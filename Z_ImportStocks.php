@@ -42,7 +42,7 @@ $FieldHeadings = array(
 if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file processing
 
     //initialize
-    $FieldTarget = 18;
+    $FieldTarget = 7;
     $InputError = 0;
 
     //check file info
@@ -85,10 +85,13 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 
         //copy
         $myrow[12] = $myrow[2];
-        $price = $myrow[3];
-        $cost = $myrow[4];
-        $stock = $myrow[5];
-        
+        $price = filter_number_format($myrow[3]);
+        $cost = filter_number_format($myrow[4]);
+        $stock = (int)$myrow[5];
+        if ($price < 0 || $cost < 0) {
+            $InputError = 1;
+            prnMsg("成本价和销售价不正确");
+        }
         //check for correct number of fields
         $fieldCount = count($myrow);
         if ($fieldCount != $FieldTarget) {
@@ -110,7 +113,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $testrow = DB_fetch_row($result);
         if ($testrow[0] != 0) {
             //todo 更改价格和库存
-            
+
             $InputError = 1;
             prnMsg(_('Stock item "' . $StockID . '" already exists'), 'error');
         }
@@ -129,7 +132,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
             prnMsg(_('The stock item code cannot contain any of the following characters') . " ' & + \" \\ " . _('or a space') . " (" . $StockID . ")", 'error');
             $StockID = '';
         }
-       
+
 
         //init
         $myrow[2] = $myrow[1];
@@ -146,7 +149,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 //        $myrow[14] = 0;
         $myrow[15] = 1;
         $myrow[16] = 0;
-//        $myrow[17] = 1;
+        $myrow[17] = 'none';
 
         if (mb_strlen($myrow[4]) > 20) {
             $InputError = 1;
@@ -232,7 +235,13 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					discountcategory,
 					taxcatid,
 					decimalplaces,
-					appendfile)
+					appendfile,
+					lastcostupdate,
+					lastcost,
+					materialcost,
+					labourcost,
+					overheadcost
+					)
 				VALUES (
 					'$StockID',
 					'" . $myrow[1] . "',
@@ -251,7 +260,12 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					'" . $myrow[14] . "',
 					" . $myrow[15] . ",
 					" . $myrow[16] . ",
-					'" . $myrow[17] . "'
+					'" . $myrow[17] . "',
+					'".Date('Y-m-d')."',
+					".$cost.",
+					".$cost.",
+					'" . filter_number_format(0.0000) . "',
+					'" . filter_number_format(0.0000) . "'
 				);
 			";
 
