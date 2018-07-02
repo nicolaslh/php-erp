@@ -291,6 +291,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
                 $InsResult = DB_query($sql, $ErrMsg, $DbgMsg);
 
                 if (DB_error_no() == 0) {
+                    //销售价
                     $sql = "INSERT INTO prices (stockid,
 									typeabbrev,
 									currabrev,
@@ -305,8 +306,16 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 								'" . filter_number_format($price) . "')";
                     $ErrMsg = _('The new price could not be added');
                     $result = DB_query($sql, $ErrMsg);
-
                     ReSequenceEffectiveDates($StockID, $TypeAbbrev, $CurrAbrev);
+
+                    //仓库
+                    $SQL = "UPDATE locstock SET quantity = quantity + " . $stock . "
+				WHERE stockid='" . $StockID . "'
+				AND loccode='GZ'";
+
+                    $ErrMsg = _('CRITICAL ERROR') . '! ' . _('NOTE DOWN THIS ERROR AND SEEK ASSISTANCE') . ': ' ._('The location stock record could not be updated because');
+                    $DbgMsg = _('The following SQL to update the stock record was used');
+                    $Result = DB_query($SQL, $ErrMsg, $DbgMsg, true);
                     prnMsg(_('New Item') . ' ' . $StockID . ' ' . _('has been added to the transaction'), 'info');
                 } else { //location insert failed so set some useful error info
                     $InputError = 1;
@@ -363,7 +372,8 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 
 }
 
-function ReSequenceEffectiveDates ($Item, $PriceList, $CurrAbbrev) {
+function ReSequenceEffectiveDates($Item, $PriceList, $CurrAbbrev)
+{
 
     /*This is quite complicated - the idea is that prices set up should be unique and there is no way two prices could be returned as valid - when getting a price in includes/GetPrice.inc the logic is to first look for a price of the salestype/currency within the effective start and end dates - then if not get the price with a start date prior but a blank end date (the default price). We would not want two prices where one price falls inside another effective date range except in the case of a blank end date - ie no end date - the default price for the currency/salestype.
     I first thought that we would need to update the previous default price (blank end date), when a new default price is entered, to have an end date of the startdate of this new default price less 1 day - but this is  converting a default price into a special price which could result in having two special prices over the same date range - best to leave it unchanged and use logic in the GetPrice.inc to ensure the correct default price is returned
@@ -383,15 +393,15 @@ function ReSequenceEffectiveDates ($Item, $PriceList, $CurrAbbrev) {
 				ORDER BY startdate, enddate";
     $result = DB_query($SQL);
 
-    while ($myrow = DB_fetch_array($result)){
-        if (isset($NextStartDate)){
-            if (Date1GreaterThanDate2(ConvertSQLDate($myrow['startdate']),$NextStartDate)){
+    while ($myrow = DB_fetch_array($result)) {
+        if (isset($NextStartDate)) {
+            if (Date1GreaterThanDate2(ConvertSQLDate($myrow['startdate']), $NextStartDate)) {
                 $NextStartDate = ConvertSQLDate($myrow['startdate']);
                 //Only if the previous enddate is after the new start date do we need to look at updates
-                if (Date1GreaterThanDate2(ConvertSQLDate($EndDate),ConvertSQLDate($myrow['startdate']))) {
+                if (Date1GreaterThanDate2(ConvertSQLDate($EndDate), ConvertSQLDate($myrow['startdate']))) {
                     /*Need to make the end date the new start date less 1 day */
-                    $SQL = "UPDATE prices SET enddate = '" . FormatDateForSQL(DateAdd($NextStartDate,'d',-1))  . "'
-										WHERE stockid ='" .$Item . "'
+                    $SQL = "UPDATE prices SET enddate = '" . FormatDateForSQL(DateAdd($NextStartDate, 'd', -1)) . "'
+										WHERE stockid ='" . $Item . "'
 										AND currabrev='" . $CurrAbbrev . "'
 										AND typeabbrev='" . $PriceList . "'
 										AND startdate ='" . $StartDate . "'
@@ -422,11 +432,11 @@ function ReSequenceEffectiveDates ($Item, $PriceList, $CurrAbbrev) {
     $result = DB_query($SQL);
 
     while ($myrow = DB_fetch_array($result)) {
-        if (isset($OldStartDate)){
+        if (isset($OldStartDate)) {
             /*Need to make the end date the new start date less 1 day */
-            $NewEndDate = FormatDateForSQL(DateAdd(ConvertSQLDate($myrow['startdate']),'d',-1));
-            $SQL = "UPDATE prices SET enddate = '" . $NewEndDate  . "'
-							WHERE stockid ='" .$Item . "'
+            $NewEndDate = FormatDateForSQL(DateAdd(ConvertSQLDate($myrow['startdate']), 'd', -1));
+            $SQL = "UPDATE prices SET enddate = '" . $NewEndDate . "'
+							WHERE stockid ='" . $Item . "'
 							AND currabrev='" . $CurrAbbrev . "'
 							AND typeabbrev='" . $PriceList . "'
 							AND startdate ='" . $OldStartDate . "'
