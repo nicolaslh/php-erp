@@ -118,7 +118,7 @@ if (isset($_POST['ShowSales'])){
 	echo'<tr>
 			<th>' . _('Item Code') . '</th>
 			<th>' . _('Item Description') . '</th>
-			<th>已售数量</td>
+			<th>已售数量</th>
 			<th>产品销售收入</th>
 			<th>销货成本</th>
 			<th>' . _('Gross Margin') . '</th>
