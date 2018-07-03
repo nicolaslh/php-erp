@@ -1,7 +1,7 @@
 <?php
 /* webERP menus with Captions and URLs. */
 
-$ModuleLink = array('Sales', 'AR', 'PO', 'AP', 'stock', 'manuf', 'GL', 'FA', 'PC', 'system', 'Utilities');
+$ModuleLink = array('Sales',/* 'AR', 'PO', 'AP',*/ 'stock', /*'manuf', 'GL', 'FA', 'PC',*/ 'system', 'Utilities');
 $ReportList = array('Sales' => 'ord', 'AR' => 'ar', 'PO' => 'prch', 'AP' => 'ap', 'stock' => 'inv', 'manuf' => 'man', 'GL' => 'gl', 'FA' => 'fa', 'PC' => 'pc', 'system' => 'sys', 'Utilities' => 'utils');
 
 /*The headings showing on the tabs accross the main index used also in WWW_Users for defining what should be visible to the user */
