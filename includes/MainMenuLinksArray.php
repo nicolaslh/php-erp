@@ -5,7 +5,7 @@ $ModuleLink = array('Sales',/* 'AR', 'PO', 'AP',*/ 'stock', /*'manuf', 'GL', 'FA
 $ReportList = array('Sales' => 'ord', 'AR' => 'ar', 'PO' => 'prch', 'AP' => 'ap', 'stock' => 'inv', 'manuf' => 'man', 'GL' => 'gl', 'FA' => 'fa', 'PC' => 'pc', 'system' => 'sys', 'Utilities' => 'utils');
 
 /*The headings showing on the tabs accross the main index used also in WWW_Users for defining what should be visible to the user */
-$ModuleList = array(_('Sales'), _('Receivables'), _('Purchases'), _('Payables'), _('Inventory'), _('Manufacturing'), _('General Ledger'), _('Asset Manager'), _('Petty Cash'), _('Setup'), _('Utilities'));
+$ModuleList = array(_('Sales'), /*_('Receivables'), _('Purchases'), _('Payables'),*/ _('Inventory'), /*_('Manufacturing'), _('General Ledger'), _('Asset Manager'), _('Petty Cash'),*/ _('Setup'), _('Utilities'));
 
 $MenuItems['Sales']['Transactions']['Caption'] = array(_('New Sales Order or Quotation'), _('Enter Counter Sales'), _('Enter Counter Returns'), _('Generate/Print Picking Lists'), _('Outstanding Sales Orders/Quotations'), _('Special Order'), _('Recurring Order Template'), _('Process Recurring Orders'), _('Maintain Picking Lists'));
 
