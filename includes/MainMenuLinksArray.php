@@ -13,7 +13,7 @@ $ReportList = array('Sales' => 'ord', 'AR' => 'ar', 'PO' => 'prch', 'AP' => 'ap'
 /*The headings showing on the tabs accross the main index used also in WWW_Users for defining what should be visible to the user */
 $ModuleList = array(_('Sales'),
 //    _('Receivables'),
-     _('Purchases'),
+    _('Purchases'),
 //     _('Payables'),
     _('Inventory'),
     /*_('Manufacturing'), _('General Ledger'), _('Asset Manager'), _('Petty Cash'),*/
@@ -23,7 +23,7 @@ $MenuItems['Sales']['Transactions']['Caption'] = array(_('New Sales Order or Quo
 
 $MenuItems['Sales']['Transactions']['URL'] = array('/SelectOrderItems.php?NewOrder=Yes', '/CounterSales.php', '/CounterReturns.php', '/GeneratePickingList.php', '/SelectSalesOrder.php', '/SpecialOrder.php', '/SelectRecurringSalesOrder.php', '/RecurringSalesOrdersProcess.php', '/SelectPickingLists.php');
 
-$MenuItems['Sales']['Reports']['Caption'] = array(_('Sales Order Inquiry'), _('Print Price Lists'), _('Order Status Report'), _('Orders Invoiced Reports'), _('Daily Sales Inquiry'), _('Sales By Sales Type Inquiry'), _('Sales By Category Inquiry'), _('Sales By Category By Item Inquiry'), _('Sales Analysis Reports'), _('Sales Graphs'), _('Top Sellers Inquiry'), _('Order Delivery Differences Report'), _('Delivery In Full On Time (DIFOT) Report'), _('Sales Order Detail Or Summary Inquiries'), _('Top Sales Items Inquiry'), _('Top Customers Inquiry'), _('Worst Sales Items Report'), _('Sales With Low Gross Profit Report'), _('Sell Through Support Claims Report'));
+$MenuItems['Sales']['Reports']['Caption'] = array(_('Sales Order Inquiry'), _('Print Price Lists'), _('Order Status Report'), _('Orders Invoiced Reports'), _('Daily Sales Inquiry'), _('Sales By Sales Type Inquiry'), _('Sales By Category Inquiry'), "销售额查询", _('Sales Analysis Reports'), _('Sales Graphs'), _('Top Sellers Inquiry'), _('Order Delivery Differences Report'), _('Delivery In Full On Time (DIFOT) Report'), _('Sales Order Detail Or Summary Inquiries'), _('Top Sales Items Inquiry'), _('Top Customers Inquiry'), _('Worst Sales Items Report'), _('Sales With Low Gross Profit Report'), _('Sell Through Support Claims Report'));
 
 $MenuItems['Sales']['Reports']['URL'] = array('/SelectCompletedOrder.php', '/PDFPriceList.php', '/PDFOrderStatus.php', '/PDFOrdersInvoiced.php', '/DailySalesInquiry.php', '/SalesByTypePeriodInquiry.php', '/SalesCategoryPeriodInquiry.php', '/StockCategorySalesInquiry.php', '/SalesAnalRepts.php', '/SalesGraph.php', '/SalesTopItemsInquiry.php', '/PDFDeliveryDifferences.php', '/PDFDIFOT.php', '/SalesInquiry.php', '/TopItems.php', '/SalesTopCustomersInquiry.php', '/NoSalesItems.php', '/PDFLowGP.php', '/PDFSellThroughSupportClaim.php');
 

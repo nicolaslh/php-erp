@@ -118,13 +118,13 @@ if (isset($_POST['ShowSales'])){
 	echo'<tr>
 			<th>' . _('Item Code') . '</th>
 			<th>' . _('Item Description') . '</th>
-			<th>' . _('Qty Sold') . '</td>
-			<th>' . _('Sales Revenue') . '</th>
-			<th>' . _('COGS') . '</th>
-			<th>' . _('Gross Margin') . '</th>
-			<th>' . _('Avg Unit') . '<br/>' . _('Sale Price') . '</th>
-			<th>' . _('Avg Unit') . '<br/>' . _('Cost') . '</th>
-			<th>' . _('Margin %') . '</th>
+			<th>已售数量</td>
+			<th>产品销售收入</th>
+			<th>销货成本</th>
+			<th>毛利</th>
+			<th>单位<br/>销售价格</th>
+			<th>' . _('Avg Unit') . '<br/>成本</th>
+			<th>利润</th>
 		</tr>';
 
 	$CumulativeTotalSales = 0;
