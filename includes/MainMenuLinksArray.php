@@ -1,11 +1,23 @@
 <?php
 /* webERP menus with Captions and URLs. */
 
-$ModuleLink = array('Sales',/* 'AR', 'PO', 'AP',*/ 'stock', /*'manuf', 'GL', 'FA', 'PC',*/ 'system', 'Utilities');
+$ModuleLink = array('Sales',
+    /* 'AR',*/
+    'PO',
+//    'AP',
+    'stock',
+    /*'manuf', 'GL', 'FA', 'PC',*/
+    'system', 'Utilities');
 $ReportList = array('Sales' => 'ord', 'AR' => 'ar', 'PO' => 'prch', 'AP' => 'ap', 'stock' => 'inv', 'manuf' => 'man', 'GL' => 'gl', 'FA' => 'fa', 'PC' => 'pc', 'system' => 'sys', 'Utilities' => 'utils');
 
 /*The headings showing on the tabs accross the main index used also in WWW_Users for defining what should be visible to the user */
-$ModuleList = array(_('Sales'), /*_('Receivables'), _('Purchases'), _('Payables'),*/ _('Inventory'), /*_('Manufacturing'), _('General Ledger'), _('Asset Manager'), _('Petty Cash'),*/ _('Setup'), _('Utilities'));
+$ModuleList = array(_('Sales'),
+//    _('Receivables'),
+     _('Purchases'),
+//     _('Payables'),
+    _('Inventory'),
+    /*_('Manufacturing'), _('General Ledger'), _('Asset Manager'), _('Petty Cash'),*/
+    _('Setup'), _('Utilities'));
 
 $MenuItems['Sales']['Transactions']['Caption'] = array(_('New Sales Order or Quotation'), _('Enter Counter Sales'), _('Enter Counter Returns'), _('Generate/Print Picking Lists'), _('Outstanding Sales Orders/Quotations'), _('Special Order'), _('Recurring Order Template'), _('Process Recurring Orders'), _('Maintain Picking Lists'));
 
@@ -26,9 +38,9 @@ $MenuItems['AR']['Transactions']['URL'] = array('/SelectSalesOrder.php', '/Selec
 $MenuItems['AR']['Reports']['Caption'] = array(_('Where Allocated Inquiry'), _('Print Invoices or Credit Notes'), _('Print Statements'), _('Aged Customer Balances/Overdues Report'), _('Re-Print A Deposit Listing'), _('Debtor Balances At A Prior Month End'), _('Customer Listing By Area/Salesperson'), _('List Daily Transactions'), _('Customer Transaction Inquiries'), _('Customer Activity and Balances'));
 
 if ($_SESSION['InvoicePortraitFormat'] == 0) {
-	$PrintInvoicesOrCreditNotesScript = '/PrintCustTrans.php';
+    $PrintInvoicesOrCreditNotesScript = '/PrintCustTrans.php';
 } else {
-	$PrintInvoicesOrCreditNotesScript = '/PrintCustTransPortrait.php';
+    $PrintInvoicesOrCreditNotesScript = '/PrintCustTransPortrait.php';
 }
 
 $MenuItems['AR']['Reports']['URL'] = array('/CustWhereAlloc.php', $PrintInvoicesOrCreditNotesScript, '/PrintCustStatements.php', '/AgedDebtors.php', '/PDFBankingSummary.php', '/DebtorsAtPeriodEnd.php', '/PDFCustomerList.php', '/PDFCustTransListing.php', '/CustomerTransInquiry.php', '/CustomerBalancesMovement.php');
@@ -62,9 +74,9 @@ $MenuItems['PO']['Maintenance']['Caption'] = array(_('Maintain Supplier Price Li
 $MenuItems['PO']['Maintenance']['URL'] = array('/SupplierPriceList.php');
 
 $MenuItems['stock']['Transactions']['Caption'] = array(_('Receive Purchase Orders'), _('Inventory Location Transfers'), //"Inventory Transfer - Item Dispatch"
-_('Bulk Inventory Transfer') . ' - ' . _('Dispatch'), //"Inventory Transfer - Bulk Dispatch"
-_('Bulk Inventory Transfer') . ' - ' . _('Receive'), //"Inventory Transfer - Receive"
-_('Inventory Adjustments'), _('Reverse Goods Received'), _('Enter Stock Counts'), _('Create a New Internal Stock Request'), _('Authorise Internal Stock Requests'), _('Fulfill Internal Stock Requests'));
+    _('Bulk Inventory Transfer') . ' - ' . _('Dispatch'), //"Inventory Transfer - Bulk Dispatch"
+    _('Bulk Inventory Transfer') . ' - ' . _('Receive'), //"Inventory Transfer - Receive"
+    _('Inventory Adjustments'), _('Reverse Goods Received'), _('Enter Stock Counts'), _('Create a New Internal Stock Request'), _('Authorise Internal Stock Requests'), _('Fulfill Internal Stock Requests'));
 
 $MenuItems['stock']['Transactions']['URL'] = array('/PO_SelectOSPurchOrder.php', '/StockTransfers.php?New=Yes', '/StockLocTransfer.php', '/StockLocTransferReceive.php', '/StockAdjustments.php?NewAdjustment=Yes', '/ReverseGRN.php', '/StockCounts.php', '/InternalStockRequest.php?New=Yes', '/InternalStockRequestAuthorisation.php', '/InternalStockRequestFulfill.php');
 
