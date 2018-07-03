@@ -41,73 +41,77 @@ $MenuItems['Sales']['Transactions']['Caption'] = array(
     _('New Sales Order or Quotation'),
     _('Enter Counter Sales'),
     _('Enter Counter Returns'),
-    _('Generate/Print Picking Lists'),
-    _('Outstanding Sales Orders/Quotations'),
-    _('Special Order'),
-    _('Recurring Order Template'),
-    _('Process Recurring Orders'),
-    _('Maintain Picking Lists')
+//    _('Generate/Print Picking Lists'),
+//    _('Outstanding Sales Orders/Quotations'),
+//    _('Special Order'),
+//    _('Recurring Order Template'),
+//    _('Process Recurring Orders'),
+//    _('Maintain Picking Lists')
 );
 
 $MenuItems['Sales']['Transactions']['URL'] = array(
     '/SelectOrderItems.php?NewOrder=Yes',
     '/CounterSales.php',
     '/CounterReturns.php',
-    '/GeneratePickingList.php',
-    '/SelectSalesOrder.php',
-    '/SpecialOrder.php',
-    '/SelectRecurringSalesOrder.php',
-    '/RecurringSalesOrdersProcess.php',
-    '/SelectPickingLists.php');
+//    '/GeneratePickingList.php',
+//    '/SelectSalesOrder.php',
+//    '/SpecialOrder.php',
+//    '/SelectRecurringSalesOrder.php',
+//    '/RecurringSalesOrdersProcess.php',
+//    '/SelectPickingLists.php'
+    );
 
 $MenuItems['Sales']['Reports']['Caption'] = array(
     _('Sales Order Inquiry'),
     _('Print Price Lists'),
-    _('Order Status Report'),
-    _('Orders Invoiced Reports'),
+//    _('Order Status Report'),
+//    _('Orders Invoiced Reports'),
     _('Daily Sales Inquiry'),
     _('Sales By Sales Type Inquiry'),
     _('Sales By Category Inquiry'),
     "销售额查询",
     _('Sales Analysis Reports'),
     _('Sales Graphs'),
-    _('Top Sellers Inquiry'),
-    _('Order Delivery Differences Report'),
-    _('Delivery In Full On Time (DIFOT) Report'),
-    _('Sales Order Detail Or Summary Inquiries'),
+//    _('Top Sellers Inquiry'),
+//    _('Order Delivery Differences Report'),
+//    _('Delivery In Full On Time (DIFOT) Report'),
+//    _('Sales Order Detail Or Summary Inquiries'),
     _('Top Sales Items Inquiry'),
-    _('Top Customers Inquiry'),
+//    _('Top Customers Inquiry'),
     _('Worst Sales Items Report'),
     _('Sales With Low Gross Profit Report'),
-    _('Sell Through Support Claims Report'));
+//    _('Sell Through Support Claims Report')
+    );
 
-$MenuItems['Sales']['Reports']['URL'] = array('/SelectCompletedOrder.php',
+$MenuItems['Sales']['Reports']['URL'] = array(
+    '/SelectCompletedOrder.php',
     '/PDFPriceList.php',
-    '/PDFOrderStatus.php',
-    '/PDFOrdersInvoiced.php',
+//    '/PDFOrderStatus.php',
+//    '/PDFOrdersInvoiced.php',
     '/DailySalesInquiry.php',
     '/SalesByTypePeriodInquiry.php',
     '/SalesCategoryPeriodInquiry.php',
     '/StockCategorySalesInquiry.php',
     '/SalesAnalRepts.php',
     '/SalesGraph.php',
-    '/SalesTopItemsInquiry.php',
-    '/PDFDeliveryDifferences.php',
-    '/PDFDIFOT.php',
-    '/SalesInquiry.php',
+//    '/SalesTopItemsInquiry.php',
+//    '/PDFDeliveryDifferences.php',
+//    '/PDFDIFOT.php',
+//    '/SalesInquiry.php',
     '/TopItems.php',
-    '/SalesTopCustomersInquiry.php',
+//    '/SalesTopCustomersInquiry.php',
     '/NoSalesItems.php',
     '/PDFLowGP.php',
-    '/PDFSellThroughSupportClaim.php');
+//    '/PDFSellThroughSupportClaim.php'
+    );
 
-$MenuItems['Sales']['Maintenance']['Caption'] = array(_('Create Contract'),
+/*$MenuItems['Sales']['Maintenance']['Caption'] = array(_('Create Contract'),
     _('Select Contract'),
     _('Sell Through Support Deals'));
 
 $MenuItems['Sales']['Maintenance']['URL'] = array('/Contracts.php',
     '/SelectContract.php',
-    '/SellThroughSupport.php');
+    '/SellThroughSupport.php');*/
 
 $MenuItems['AR']['Transactions']['Caption'] = array(_('Select Order to Invoice'),
     _('Create A Credit Note'),
