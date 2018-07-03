@@ -137,7 +137,8 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
             prnMsg(_('The stock item code cannot contain any of the following characters') . " ' & + \" \\ " . _('or a space') . " (" . $StockID . ")", 'error');
             $StockID = '';
         }
-
+        //support Chinese
+        $myrow[1] = iconv("GBK", "UTF-8", $myrow[1]);
 
         //init
         $myrow[2] = $myrow[1];
