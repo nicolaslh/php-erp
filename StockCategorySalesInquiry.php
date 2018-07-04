@@ -328,12 +328,14 @@ if (isset($_POST['excel'])) {
         }*/
 
         $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('A' . $head, $SalesRow['stockid'])
+//            ->setCellValue('A' . $head, $SalesRow['stockid'])
             ->setCellValue('B' . $head, $SalesRow['description'])
             ->setCellValue('C' . $head, locale_number_format($SalesRow['quantitysold'], $_SESSION['CompanyRecord']['decimalplaces']))
             ->setCellValue('D' . $head, locale_number_format($SalesRow['salesvalue'], $_SESSION['CompanyRecord']['decimalplaces']))
             ->setCellValue('E' . $head, locale_number_format($SalesRow['cogs'], $_SESSION['CompanyRecord']['decimalplaces']))
             ->setCellValue('F' . $head, locale_number_format($SalesRow['salesvalue'] - $SalesRow['cogs'], $_SESSION['CompanyRecord']['decimalplaces']));
+
+        $objPHPExcel->getActiveSheet()->setCellValueExplicit('A' . $head, $SalesRow['stockid'], \PHPExcel_Cell_DataType::TYPE_STRING);
 
         if ($SalesRow['quantitysold'] != 0) {
             $objPHPExcel->setActiveSheetIndex(0)
@@ -378,12 +380,17 @@ if (isset($_POST['excel'])) {
         $objPHPExcel->setActiveSheetIndex()
             ->setCellValue('I' . $head, _('N/A'));
     }
+
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $head)
+        ->getFont()
+        ->setBold(true); //字体加粗
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $head)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
     ++$head;
 
     $objPHPExcel->getActiveSheet()->mergeCells('A' . $head . ':B' . $head);
     $objPHPExcel->getActiveSheet()->mergeCells('G' . $head . ':H' . $head);
     $objPHPExcel->setActiveSheetIndex()
-        ->setCellValue('A' . $head, _('Category Total'))
+        ->setCellValue('A' . $head, _('GRAND Total'))
         ->setCellValue('C' . $head, locale_number_format($CumulativeTotalQty, $_SESSION['CompanyRecord']['decimalplaces']))
         ->setCellValue('D' . $head, locale_number_format($CumulativeTotalSales, $_SESSION['CompanyRecord']['decimalplaces']))
         ->setCellValue('E' . $head, locale_number_format($CumulativeTotalCOGS, $_SESSION['CompanyRecord']['decimalplaces']))
@@ -395,6 +402,12 @@ if (isset($_POST['excel'])) {
         $objPHPExcel->setActiveSheetIndex()
             ->setCellValue('I' . $head, _('N/A'));
     }
+
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $head)
+        ->getFont()
+        ->setBold(true); //字体加粗
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $head)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+
 
     $objPHPExcel->getActiveSheet()->setTitle('销售报表');
     $objPHPExcel->setActiveSheetIndex(0);
