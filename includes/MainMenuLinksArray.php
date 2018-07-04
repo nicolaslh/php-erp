@@ -40,7 +40,7 @@ _('Petty Cash'),*/
 $MenuItems['Sales']['Transactions']['Caption'] = array(
     _('New Sales Order or Quotation'),
     _('Enter Counter Sales'),
-    _('Enter Counter Returns'),
+    "柜台退货", //_('Enter Counter Returns'),
 //    _('Generate/Print Picking Lists'),
 //    _('Outstanding Sales Orders/Quotations'),
 //    _('Special Order'),
