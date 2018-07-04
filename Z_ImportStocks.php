@@ -151,6 +151,9 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $myrow[9] = 0;
         $myrow[5] = 'B';
         $myrow[7] = 0;
+        if(is_numeric($StockID)){
+            $myrow[13] = $StockID;
+        }
 //        $myrow[13] = 0;
 //        $myrow[14] = 0;
         $myrow[15] = 4;
