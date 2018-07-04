@@ -153,7 +153,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $myrow[7] = 0;
 //        $myrow[13] = 0;
 //        $myrow[14] = 0;
-        $myrow[15] = 1;
+        $myrow[15] = 4;
         $myrow[16] = 0;
         $myrow[17] = 'none';
 
