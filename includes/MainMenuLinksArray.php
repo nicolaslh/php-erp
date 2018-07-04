@@ -626,17 +626,17 @@ $MenuItems['Utilities']['Transactions']['Caption'] = array(_('Change A Customer 
     _('Change A GL Account Code'),
     _('Change An Inventory Item Code'),
     _('Change A Location Code'),
-    _('Change A Salesman Code'),
-    _('Change A Stock Category Code'),
+    "变更销售员代码",
+    '变更库存种类代码',//_('Change A Stock Category Code'),
     _('Change A Supplier Code'),
-    _('Translate Item Descriptions'),
-    _('Update costs for all BOM items,
-from the bottom up'),
+    '翻译商品描述',// _('Translate Item Descriptions'),
+    '更新列在物料清单中的所有物料的成本',//_('Update costs for all BOM items, from the bottom up'),
     _('Re-apply costs to Sales Analysis'),
     _('Delete sales transactions'),
     _('Reverse all supplier payments on a specified date'),
     _('Update sales analysis with latest customer data'),
-    _('Copy Authority of GL Accounts from one user to another'));
+    '帐户的权限从一个用户复制到另一个用户'//_('Copy Authority of GL Accounts from one user to another')
+    );
 
 $MenuItems['Utilities']['Transactions']['URL'] = array('/Z_ChangeCustomerCode.php',
     '/Z_ChangeBranchCode.php',
