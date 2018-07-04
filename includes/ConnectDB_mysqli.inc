@@ -61,7 +61,7 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 	$result = mysqli_query($db, $SQL);
 	$_SESSION['LastInsertId'] = mysqli_insert_id($db);
 if(!$result){
-//var_dump($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false, $TrapErrors=true);exit;
+var_dump($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false, $TrapErrors=true);exit;
 }
 //var_dump($result);
 	if($DebugMessage == '') {
