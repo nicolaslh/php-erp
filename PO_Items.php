@@ -187,7 +187,7 @@ if (isset($_POST['Commit'])){ /*User wishes to commit the order to the database 
 									'" . $_SESSION['PO'.$identifier]->Version . "',
 									'" . Date('Y-m-d') . "',
 									'" . $_SESSION['PO'.$identifier]->DeliveryBy . "',
-									'Printed',
+									'" . $_SESSION['PO'.$identifier]->Status . "',
 									'" . htmlspecialchars($StatusComment,ENT_QUOTES,'UTF-8') . "',
 									'" . FormatDateForSQL($_SESSION['PO'.$identifier]->DeliveryDate) . "',
 									'" . $_SESSION['PO'.$identifier]->PaymentTerms. "',
