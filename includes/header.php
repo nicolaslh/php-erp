@@ -88,7 +88,7 @@
 		echo '</li>'; //take off inline formatting, use CSS instead ===HJ===
 
 		if (count($_SESSION['AllowedPageSecurityTokens'])>1){
-			echo '<li><a href="', $RootPath, '/Dashboard.php">', _('Dashboard'), '</a></li>';
+//			echo '<li><a href="', $RootPath, '/Dashboard.php">', _('Dashboard'), '</a></li>';
 			echo '<li><a href="', $RootPath, '/SelectCustomer.php">', _('Customers'), '</a></li>';
 			echo '<li><a href="', $RootPath, '/SelectProduct.php">', _('Items'), '</a></li>';
 			echo '<li><a href="', $RootPath, '/SelectSupplier.php">', _('Suppliers'), '</a></li>';
