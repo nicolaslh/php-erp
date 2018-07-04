@@ -36,13 +36,14 @@ $FieldHeadings = array(
 //	'ItemPDF'          	// 17 'ITEMPDF'
     'price',            // 18 卖价
     'cost',                // 19 成本价
-    'stock'                // 20 库存
+    'stock',               // 20 库存
+    'barcode',                // 20 库存
 );
 
 if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file processing
 
     //initialize
-    $FieldTarget = 7;
+    $FieldTarget = 8;
     $InputError = 0;
 
     //check file info
@@ -88,7 +89,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $price = filter_number_format($myrow[3]);
         $cost = filter_number_format($myrow[4]);
         $stock = (int)$myrow[5];
-
+        $barcode = $myrow[6];
         $SQLStartDate = date("Y-m-d", time());
         $SQLEndDate = '9999-12-31';
         $TypeAbbrev = 'DE';
@@ -151,10 +152,10 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $myrow[9] = 0;
         $myrow[5] = 'B';
         $myrow[7] = 0;
-        if(is_numeric($StockID)){
+        $myrow[13] = $barcode;
+        if(is_numeric($StockID) && $barcode == ''){
             $myrow[13] = $StockID;
         }
-//        $myrow[13] = 0;
 //        $myrow[14] = 0;
         $myrow[15] = 4;
         $myrow[16] = 0;
