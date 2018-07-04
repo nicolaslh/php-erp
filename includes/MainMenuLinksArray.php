@@ -189,12 +189,13 @@ $MenuItems['AP']['Maintenance']['URL'] = array('/Suppliers.php',
     '/SelectSupplier.php',
     '/Factors.php');
 
-$MenuItems['PO']['Transactions']['Caption'] = array(_('New Purchase Order'),
+$MenuItems['PO']['Transactions']['Caption'] = array(
+    _('New Purchase Order'),
     _('Purchase Orders'),
     _('Purchase Order Grid Entry'),
-    _('Create a New Tender'),
-    _('Edit Existing Tenders'),
-    _('Process Tenders and Offers'),
+//    _('Create a New Tender'),
+//    _('Edit Existing Tenders'),
+//    _('Process Tenders and Offers'),
     _('Orders to Authorise'),
     _('Shipment Entry'),
     _('Select A Shipment'));
@@ -202,9 +203,9 @@ $MenuItems['PO']['Transactions']['Caption'] = array(_('New Purchase Order'),
 $MenuItems['PO']['Transactions']['URL'] = array('/PO_Header.php?NewOrder=Yes',
     '/PO_SelectOSPurchOrder.php',
     '/PurchaseByPrefSupplier.php',
-    '/SupplierTenderCreate.php?New=Yes',
-    '/SupplierTenderCreate.php?Edit=Yes',
-    '/OffersReceived.php',
+//    '/SupplierTenderCreate.php?New=Yes',
+//    '/SupplierTenderCreate.php?Edit=Yes',
+//    '/OffersReceived.php',
     '/PO_AuthoriseMyOrders.php',
     '/SelectSupplier.php',
     '/Shipt_Select.php');
@@ -212,18 +213,21 @@ $MenuItems['PO']['Transactions']['URL'] = array('/PO_Header.php?NewOrder=Yes',
 $MenuItems['PO']['Reports']['Caption'] = array(_('Purchase Order Inquiry'),
     _('Purchase Order Detail Or Summary Inquiries'),
     _('Supplier Price List'),
-    _('Purchases from Suppliers'));
+//    _('Purchases from Suppliers')
+);
 
 $MenuItems['PO']['Reports']['URL'] = array('/PO_SelectPurchOrder.php',
     '/POReport.php',
     '/SuppPriceList.php',
-    '/PurchasesReport.php');
+//    '/PurchasesReport.php'
+);
 
-$MenuItems['PO']['Maintenance']['Caption'] = array(_('Maintain Supplier Price Lists'));
+/*$MenuItems['PO']['Maintenance']['Caption'] = array(_('Maintain Supplier Price Lists'));
 
-$MenuItems['PO']['Maintenance']['URL'] = array('/SupplierPriceList.php');
+$MenuItems['PO']['Maintenance']['URL'] = array('/SupplierPriceList.php');*/
 
-$MenuItems['stock']['Transactions']['Caption'] = array(_('Receive Purchase Orders'),
+$MenuItems['stock']['Transactions']['Caption'] = array(
+    _('Receive Purchase Orders'),
     _('Inventory Location Transfers'),
 //"Inventory Transfer - Item Dispatch"
     _('Bulk Inventory Transfer') . ' - ' . _('Dispatch'),
@@ -233,19 +237,20 @@ $MenuItems['stock']['Transactions']['Caption'] = array(_('Receive Purchase Order
     _('Inventory Adjustments'),
     _('Reverse Goods Received'),
     _('Enter Stock Counts'),
-    _('Create a New Internal Stock Request'),
-    _('Authorise Internal Stock Requests'),
+//    _('Create a New Internal Stock Request'),
+//    _('Authorise Internal Stock Requests'),
     _('Fulfill Internal Stock Requests'));
 
-$MenuItems['stock']['Transactions']['URL'] = array('/PO_SelectOSPurchOrder.php',
+$MenuItems['stock']['Transactions']['URL'] = array(
+    '/PO_SelectOSPurchOrder.php',
     '/StockTransfers.php?New=Yes',
     '/StockLocTransfer.php',
     '/StockLocTransferReceive.php',
     '/StockAdjustments.php?NewAdjustment=Yes',
     '/ReverseGRN.php',
     '/StockCounts.php',
-    '/InternalStockRequest.php?New=Yes',
-    '/InternalStockRequestAuthorisation.php',
+//    '/InternalStockRequest.php?New=Yes',
+//    '/InternalStockRequestAuthorisation.php',
     '/InternalStockRequestFulfill.php');
 
 $MenuItems['stock']['Reports']['Caption'] = array(_('Serial Item Research Tool'),
@@ -270,8 +275,9 @@ $MenuItems['stock']['Reports']['Caption'] = array(_('Serial Item Research Tool')
     _('List Negative Stocks'),
     _('Period Stock Transaction Listing'),
     _('Stock Transfer Note'),
-    _('Aged Controlled Stock Report'),
-    _('Internal stock request inquiry'));
+//    _('Aged Controlled Stock Report'),
+//    _('Internal stock request inquiry')
+);
 
 $MenuItems['stock']['Reports']['URL'] = array('/StockSerialItemResearch.php',
     '/PDFPrintLabel.php',
@@ -295,17 +301,20 @@ $MenuItems['stock']['Reports']['URL'] = array('/StockSerialItemResearch.php',
     '/PDFStockNegatives.php',
     '/PDFPeriodStockTransListing.php',
     '/PDFStockTransfer.php',
-    '/AgedControlledInventory.php',
-    '/InternalStockRequestInquiry.php');
+//    '/AgedControlledInventory.php',
+//    '/InternalStockRequestInquiry.php'
+);
 
-$MenuItems['stock']['Maintenance']['Caption'] = array(_('Add A New Item'),
+$MenuItems['stock']['Maintenance']['Caption'] = array(
+    _('Add A New Item'),
     _('Select An Item'),
     _('Review Translated Descriptions'),
     _('Sales Category Maintenance'),
     _('Brands Maintenance'),
     _('Add or Update Prices Based On Costs'),
     _('View or Update Prices Based On Costs'),
-    _('Reorder Level By Category/Location'));
+    _('Reorder Level By Category/Location')
+);
 
 $MenuItems['stock']['Maintenance']['URL'] = array('/Stocks.php',
     '/SelectProduct.php',
@@ -510,99 +519,107 @@ $MenuItems['PC']['Maintenance']['URL'] = array('/PcTypeTabs.php',
     '/PcExpenses.php',
     '/PcExpensesTypeTab.php');
 
-$MenuItems['system']['Transactions']['Caption'] = array(_('Company Preferences'),
+$MenuItems['system']['Transactions']['Caption'] = array(
+    _('Company Preferences'),
     _('System Parameters'),
     _('Users Maintenance'),
-    _('Maintain Security Tokens'),
+//    _('Maintain Security Tokens'),
     _('Access Permissions Maintenance'),
     _('Page Security Settings'),
     _('Currencies Maintenance'),
-    _('Tax Authorities and Rates Maintenance'),
-    _('Tax Group Maintenance'),
-    _('Dispatch Tax Province Maintenance'),
+//    _('Tax Authorities and Rates Maintenance'),
+//    _('Tax Group Maintenance'),
+//    _('Dispatch Tax Province Maintenance'),
     _('Tax Category Maintenance'),
     _('List Periods Defined'),
     _('Report Builder Tool'),
     _('View Audit Trail'),
-    _('Geocode Maintenance'),
-    _('Form Designer'),
-    _('Web-Store Configuration'),
-    _('SMTP Server Details'),
-    _('Mailing Group Maintenance'));
+//    _('Geocode Maintenance'),
+//    _('Form Designer'),
+//    _('Web-Store Configuration'),
+//    _('SMTP Server Details'),
+//    _('Mailing Group Maintenance')
+);
 
-$MenuItems['system']['Transactions']['URL'] = array('/CompanyPreferences.php',
+$MenuItems['system']['Transactions']['URL'] = array(
+    '/CompanyPreferences.php',
     '/SystemParameters.php',
     '/WWW_Users.php',
-    '/SecurityTokens.php',
+//    '/SecurityTokens.php',
     '/WWW_Access.php',
     '/PageSecurity.php',
     '/Currencies.php',
-    '/TaxAuthorities.php',
-    '/TaxGroups.php',
-    '/TaxProvinces.php',
+//    '/TaxAuthorities.php',
+//    '/TaxGroups.php',
+//    '/TaxProvinces.php',
     '/TaxCategories.php',
     '/PeriodsInquiry.php',
     '/reportwriter/admin/ReportCreator.php',
     '/AuditTrail.php',
-    '/GeocodeSetup.php',
-    '/FormDesigner.php',
-    '/ShopParameters.php',
-    '/SMTPServer.php',
-    '/MailingGroupMaintenance.php');
+//    '/GeocodeSetup.php',
+//    '/FormDesigner.php',
+//    '/ShopParameters.php',
+//    '/SMTPServer.php',
+//    '/MailingGroupMaintenance.php'
+);
 
-$MenuItems['system']['Reports']['Caption'] = array(_('Sales Types'),
-    _('Customer Types'),
+$MenuItems['system']['Reports']['Caption'] = array(
+    _('Sales Types'),
+//    _('Customer Types'),
     _('Supplier Types'),
-    _('Credit Status'),
+//    _('Credit Status'),
     _('Payment Terms'),
     _('Set Purchase Order Authorisation levels'),
     _('Payment Methods'),
-    _('Sales People'),
-    _('Sales Areas'),
-    _('Shippers'),
+//    _('Sales People'),
+//    _('Sales Areas'),
+//    _('Shippers'),
     _('Sales GL Interface Postings'),
     _('COGS GL Interface Postings'),
-    _('Freight Costs Maintenance'),
+//    _('Freight Costs Maintenance'),
     _('Discount Matrix'));
 
 $MenuItems['system']['Reports']['URL'] = array('/SalesTypes.php',
-    '/CustomerTypes.php',
+//    '/CustomerTypes.php',
     '/SupplierTypes.php',
-    '/CreditStatus.php',
+//    '/CreditStatus.php',
     '/PaymentTerms.php',
     '/PO_AuthorisationLevels.php',
     '/PaymentMethods.php',
-    '/SalesPeople.php',
-    '/Areas.php',
-    '/Shippers.php',
+//    '/SalesPeople.php',
+//    '/Areas.php',
+//    '/Shippers.php',
     '/SalesGLPostings.php',
     '/COGSGLPostings.php',
-    '/FreightCosts.php',
+//    '/FreightCosts.php',
     '/DiscountMatrix.php');
 
 $MenuItems['system']['Maintenance']['Caption'] = array(_('Inventory Categories Maintenance'),
     _('Inventory Locations Maintenance'),
-    _('Inventory Location Authorised Users Maintenance'),
-    _('User Authorised Inventory Locations Maintenance'),
-    _('Discount Category Maintenance'),
-    _('Units of Measure'),
-    _('MRP Available Production Days'),
-    _('MRP Demand Types'),
-    _('Maintain Internal Departments'),
-    _('Maintain Internal Stock Categories to User Roles'),
-    _('Label Templates Maintenance'));
+//    _('Inventory Location Authorised Users Maintenance'),
+//    _('User Authorised Inventory Locations Maintenance'),
+//    _('Discount Category Maintenance'),
+//    _('Units of Measure'),
+//    _('MRP Available Production Days'),
+//    _('MRP Demand Types'),
+//    _('Maintain Internal Departments'),
+//    _('Maintain Internal Stock Categories to User Roles'),
+//    _('Label Templates Maintenance')
+);
 
-$MenuItems['system']['Maintenance']['URL'] = array('/StockCategories.php',
+$MenuItems['system']['Maintenance']['URL'] = array(
+    '/StockCategories.php',
     '/Locations.php',
-    '/LocationUsers.php',
-    '/UserLocations.php',
-    '/DiscountCategories.php',
-    '/UnitsOfMeasure.php',
-    '/MRPCalendar.php',
-    '/MRPDemandTypes.php',
-    '/Departments.php',
-    '/InternalStockCategoriesByRole.php',
-    '/Labels.php');
+//    '/LocationUsers.php',
+//    '/UserLocations.php',
+//    '/DiscountCategories.php',
+//    '/UnitsOfMeasure.php',
+//    '/MRPCalendar.php',
+//    '/MRPDemandTypes.php',
+//    '/Departments.php',
+//    '/InternalStockCategoriesByRole.php',
+//    '/Labels.php'
+);
 
 $MenuItems['Utilities']['Transactions']['Caption'] = array(_('Change A Customer Code'),
     _('Change A Customer Branch Code'),
@@ -637,41 +654,46 @@ $MenuItems['Utilities']['Transactions']['URL'] = array('/Z_ChangeCustomerCode.ph
     '/Z_UpdateSalesAnalysisWithLatestCustomerData.php',
     '/Z_GLAccountUsersCopyAuthority.php');
 
-$MenuItems['Utilities']['Reports']['Caption'] = array(_('Debtors Balances By Currency Totals'),
-    _('Suppliers Balances By Currency Totals'),
-    _('Show General Transactions That Do Not Balance'),
+$MenuItems['Utilities']['Reports']['Caption'] = array(
+//    _('Debtors Balances By Currency Totals'),
+//    _('Suppliers Balances By Currency Totals'),
+//    _('Show General Transactions That Do Not Balance'),
     _('List of items without picture'));
 
-$MenuItems['Utilities']['Reports']['URL'] = array('/Z_CurrencyDebtorsBalances.php',
-    '/Z_CurrencySuppliersBalances.php',
-    '/Z_CheckGLTransBalance.php',
+$MenuItems['Utilities']['Reports']['URL'] = array(
+//    '/Z_CurrencyDebtorsBalances.php',
+//    '/Z_CurrencySuppliersBalances.php',
+//    '/Z_CheckGLTransBalance.php',
     '/Z_ItemsWithoutPicture.php');
 
-$MenuItems['Utilities']['Maintenance']['Caption'] = array(_('Maintain Language Files'),
-    _('Make New Company'),
-    _('Data Export Options'),
-    _('Import Customers from .csv file'),
-    _('Import Stock Items from .csv file'),
-    _('Import Price List from .csv file'),
-    _('Import Fixed Assets from .csv file'),
-    _('Import GL Payments Receipts Or Journals From .csv file'),
-    _('Create new company template SQL file and submit to webERP'),
-    _('Re-calculate brought forward amounts in GL'),
-    _('Re-Post all GL transactions from a specified period'),
-    _('Purge all old prices'),
-    _('Remove all purchase back orders'));
+$MenuItems['Utilities']['Maintenance']['Caption'] = array(
+//    _('Maintain Language Files'),
+//    _('Make New Company'),
+//    _('Data Export Options'),
+//    _('Import Customers from .csv file'),
+    "新增商品导入",
+//    _('Import Price List from .csv file'),
+//    _('Import Fixed Assets from .csv file'),
+//    _('Import GL Payments Receipts Or Journals From .csv file'),
+//    _('Create new company template SQL file and submit to webERP'),
+//    _('Re-calculate brought forward amounts in GL'),
+//    _('Re-Post all GL transactions from a specified period'),
+//    _('Purge all old prices'),
+//    _('Remove all purchase back orders')
+);
 
-$MenuItems['Utilities']['Maintenance']['URL'] = array('/Z_poAdmin.php',
-    '/Z_MakeNewCompany.php',
-    '/Z_DataExport.php',
-    '/Z_ImportDebtors.php',
+$MenuItems['Utilities']['Maintenance']['URL'] = array(
+//    '/Z_poAdmin.php',
+//    '/Z_MakeNewCompany.php',
+//    '/Z_DataExport.php',
+//    '/Z_ImportDebtors.php',
     '/Z_ImportStocks.php',
-    '/Z_ImportPriceList.php',
-    '/Z_ImportFixedAssets.php',
-    '/Z_ImportGLTransactions.php',
-    '/Z_CreateCompanyTemplateFile.php',
-    '/Z_UpdateChartDetailsBFwd.php',
-    '/Z_RePostGLFromPeriod.php',
-    '/Z_DeleteOldPrices.php',
-    '/Z_RemovePurchaseBackOrders.php');
-?>
+//    '/Z_ImportPriceList.php',
+//    '/Z_ImportFixedAssets.php',
+//    '/Z_ImportGLTransactions.php',
+//    '/Z_CreateCompanyTemplateFile.php',
+//    '/Z_UpdateChartDetailsBFwd.php',
+//    '/Z_RePostGLFromPeriod.php',
+//    '/Z_DeleteOldPrices.php',
+//    '/Z_RemovePurchaseBackOrders.php'
+    );

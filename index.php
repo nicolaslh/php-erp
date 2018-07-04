@@ -214,14 +214,14 @@ be generated, one for standard reports and the other for custom reports.
         $RptLinks .= '</li>';
 		$NoEntries = true;
 		if ($ReportList) { // then there are reports to show, show by grouping
-			foreach ($ReportList as $Report) {
+			/*foreach ($ReportList as $Report) {
 				if ($Report['groupname']==$GroupID AND $Report['defaultreport']==$Def) {
                     $RptLinks .= '<li class="menu_group_item">';
 					$RptLinks .= '<p>&bull; <a href="' . $RootPath . '/reportwriter/ReportMaker.php?action=go&amp;reportid=' . $Report['id'] . '">' . _($Report['reportname']) . '</a></p>';
 					$RptLinks .= '</li>';
 					$NoEntries = false;
 				}
-			}
+			}*/
 			// now fetch the form groups that are a part of this group (List after reports)
 			$NoForms = true;
 			foreach ($ReportList as $Report) {
