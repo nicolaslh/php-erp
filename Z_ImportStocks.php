@@ -95,8 +95,8 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $hanshuijinjia = $buhanshui * 1.08;
         $jinhuochengben = $hanshuijinjia / 16.5;
         $wuliuchengben = $myrow[2] * 50;
-
         $zongchengben = $wuliuchengben + $jinhuochengben;
+
         $SQLStartDate = date("Y-m-d", time());
         $SQLEndDate = '9999-12-31';
         $TypeAbbrev = 'DE';
@@ -261,7 +261,8 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					buhanshui,
 					hanshuijinjia,
 					jinhuochengben,
-					wuliuchengben
+					wuliuchengben,
+					zongchengben
 					)
 				VALUES (
 					'$StockID',
@@ -290,7 +291,8 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					" . $buhanshui . ",
 					" . $hanshuijinjia . ",
 					" . $jinhuochengben . ",
-					" . $wuliuchengben . "
+					" . $wuliuchengben . ",
+					" . $zongchengben . "
 				);
 			";
 
