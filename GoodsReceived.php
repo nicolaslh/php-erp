@@ -451,6 +451,16 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
 				 		This assures that the quantity received against the purchase order line multiplied by the weighted average of standard
 				 		costs received = the total of standard cost posted to GRN suspense*/
 					$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $OrderLine->ReceiveQty) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->QtyReceived)) / ($OrderLine->ReceiveQty + $OrderLine->QtyReceived);
+					//成本计算
+                    $SQL = "UPDATE stockmaster SET	materialcost='" . filter_number_format($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost) . "',
+										lastcost='" . $CurrentStandardCost . "',
+										lastcostupdate ='" . Date('Y-m-d')."'
+								WHERE stockid='" . $OrderLine->StockID . "'";
+
+                    $ErrMsg = _('The cost details for the stock item could not be updated because');
+                    $DbgMsg = _('The SQL that failed was');
+                    $Result = DB_query($SQL,$ErrMsg,$DbgMsg,true);
+
 				} elseif ($myrow[1] == 'D') { //it's a dummy part which without stock.
 					$Dummy = true;
 					if($OrderLine->QtyReceived == 0){//There is
