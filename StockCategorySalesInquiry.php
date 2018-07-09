@@ -409,11 +409,11 @@ if (isset($_POST['excel'])) {
     $objPHPExcel->getActiveSheet()->getStyle('A' . $head)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
 
 
-    $objPHPExcel->getActiveSheet()->setTitle('销售报表');
+    $objPHPExcel->getActiveSheet()->setTitle($FromDate.'至'.$ToDate);
     $objPHPExcel->setActiveSheetIndex(0);
     ob_end_clean();//避免乱码
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="销售报表.xls"');
+    header('Content-Disposition: attachment;filename="'.$FromDate.'至'.$ToDate.'销售报表.xls"');
     header('Cache-Control: max-age=0');
     $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
     $objWriter->save('php://output');
