@@ -38,6 +38,7 @@ $FieldHeadings = array(
     'cost',                // 19 成本价
     'stock',               // 20 库存
     'barcode',                // 20 库存
+    'buhanshui',                // 20 库存
 );
 
 if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file processing
@@ -90,6 +91,12 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $cost = filter_number_format($myrow[4]);
         $stock = (int)$myrow[5];
         $barcode = $myrow[6];
+        $buhanshui = $myrow[7];
+        $hanshuijinjia = $buhanshui * 1.08;
+        $jinhuochengben = $hanshuijinjia / 16.5;
+        $wuliuchengben = $myrow[2] * 50;
+
+        $zongchengben = $wuliuchengben + $jinhuochengben;
         $SQLStartDate = date("Y-m-d", time());
         $SQLEndDate = '9999-12-31';
         $TypeAbbrev = 'DE';
@@ -153,7 +160,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $myrow[5] = 'B';
         $myrow[7] = 0;
         $myrow[13] = $barcode;
-        if(is_numeric($StockID) && $barcode == ''){
+        if (is_numeric($StockID) && $barcode == '') {
             $myrow[13] = $StockID;
         }
 //        $myrow[14] = 0;
@@ -250,7 +257,11 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					lastcost,
 					materialcost,
 					labourcost,
-					overheadcost
+					overheadcost,
+					buhanshui,
+					hanshuijinjia,
+					jinhuochengben,
+					wuliuchengben
 					)
 				VALUES (
 					'$StockID',
@@ -275,7 +286,11 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					" . $cost . ",
 					" . $cost . ",
 					'" . filter_number_format(0.0000) . "',
-					'" . filter_number_format(0.0000) . "'
+					'" . filter_number_format(0.0000) . "',
+					" . $buhanshui . ",
+					" . $hanshuijinjia . ",
+					" . $jinhuochengben . ",
+					" . $wuliuchengben . ",
 				);
 			";
 
@@ -318,7 +333,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 				WHERE stockid='" . $StockID . "'
 				AND loccode='GZ'";
 
-                    $ErrMsg = _('CRITICAL ERROR') . '! ' . _('NOTE DOWN THIS ERROR AND SEEK ASSISTANCE') . ': ' ._('The location stock record could not be updated because');
+                    $ErrMsg = _('CRITICAL ERROR') . '! ' . _('NOTE DOWN THIS ERROR AND SEEK ASSISTANCE') . ': ' . _('The location stock record could not be updated because');
                     $DbgMsg = _('The following SQL to update the stock record was used');
                     $Result = DB_query($SQL, $ErrMsg, $DbgMsg, true);
                     prnMsg(_('New Item') . ' ' . $StockID . ' ' . _('has been added to the transaction'), 'info');

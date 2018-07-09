@@ -86,7 +86,11 @@ if (!isset($_POST['Search']) AND (isset($_POST['Select']) OR isset($_SESSION['Se
 								stockmaster.volume,
 								stockmaster.grossweight,
 								stockcategory.categorydescription,
-								stockmaster.categoryid
+								stockmaster.categoryid,
+								stockmaster.buhanshui,
+								stockmaster.hanshuijinjia,
+								stockmaster.jinhuochengben,
+								stockmaster.wuliuchengben
 						FROM stockmaster INNER JOIN stockcategory
 						ON stockmaster.categoryid=stockcategory.categoryid
 						WHERE stockid='" . $StockID . "'");
@@ -393,8 +397,17 @@ if (!isset($_POST['Search']) AND (isset($_POST['Select']) OR isset($_SESSION['Se
 			echo '<td class="select"><a href="' . $RootPath . '/PO_Header.php?NewOrder=Yes&amp;SelectedSupplier=' .
 				$SuppRow['supplierid'] . '&amp;StockID=' . urlencode($StockID) . '&amp;Quantity='.$SuppRow['minorderqty'].'&amp;LeadTime='.$SuppRow['leadtime'] . '">' . _('Order') . ' </a></td>';
 			echo '</tr>';
-		}
-		echo '</table>';
+        }
+        echo '</table>';
+		echo "<table>";
+		echo "<tr><th>不含税</th><th>含税进价</th><th>进货成本</th><th>物流成本</th><th>总成本</th></tr>";
+		echo "<tr>";
+		echo "<td>".$myrow["buhanshui"]."</td>";
+		echo "<td>".$myrow["hanshuijinjia"]."</td>";
+		echo "<td>".$myrow["jinhuochengben"]."</td>";
+		echo "<td>".$myrow["wuliuchengben"]."</td>";
+		echo "</tr>";
+		echo "</table>";
 		DB_data_seek($result, 0);
 	}
 	echo '</td>
