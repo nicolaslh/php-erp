@@ -88,7 +88,6 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         //copy
         $myrow[12] = $myrow[2];
         $price = filter_number_format($myrow[3]);
-        $cost = filter_number_format($myrow[4]);
         $stock = (int)$myrow[5];
         $barcode = $myrow[6];
         $buhanshui = $myrow[7];
@@ -96,7 +95,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
         $jinhuochengben = $hanshuijinjia / 16.5;
         $wuliuchengben = $myrow[2] * 50;
         $zongchengben = $wuliuchengben + $jinhuochengben;
-
+        $cost = filter_number_format($zongchengben);
         $SQLStartDate = date("Y-m-d", time());
         $SQLEndDate = '9999-12-31';
         $TypeAbbrev = 'DE';
