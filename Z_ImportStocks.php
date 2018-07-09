@@ -287,11 +287,11 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					" . $cost . ",
 					'" . filter_number_format(0.0000) . "',
 					'" . filter_number_format(0.0000) . "',
-					" . $buhanshui . ",
-					" . $hanshuijinjia . ",
-					" . $jinhuochengben . ",
-					" . $wuliuchengben . ",
-					" . $zongchengben . "
+					" . indian_number_format($buhanshui, 2) . ",
+					" . indian_number_format($hanshuijinjia, 2) . ",
+					" . indian_number_format($jinhuochengben, 2) . ",
+					" . indian_number_format($wuliuchengben, 2) . ",
+					" . indian_number_format($zongchengben, 2) . "
 				);
 			";
 
