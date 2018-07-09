@@ -283,15 +283,15 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					" . $myrow[16] . ",
 					'" . $myrow[17] . "',
 					'" . Date('Y-m-d') . "',
-					" . $cost . ",
-					" . $cost . ",
+					" . round($cost, 2) . ",
+					" . round($cost, 2) . ",
 					'" . filter_number_format(0.0000) . "',
 					'" . filter_number_format(0.0000) . "',
-					" . indian_number_format($buhanshui, 2) . ",
-					" . indian_number_format($hanshuijinjia, 2) . ",
-					" . indian_number_format($jinhuochengben, 2) . ",
-					" . indian_number_format($wuliuchengben, 2) . ",
-					" . indian_number_format($zongchengben, 2) . "
+					" . round($buhanshui, 2) . ",
+					" . round($hanshuijinjia, 2) . ",
+					" . round($jinhuochengben, 2) . ",
+					" . round($wuliuchengben, 2) . ",
+					" . round($zongchengben, 2) . "
 				);
 			";
 

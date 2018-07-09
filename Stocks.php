@@ -272,6 +272,17 @@ if (isset($_POST['submit'])) {
 		$i++;
 	}
 
+	if(!isset($_POST["buhanshui"]) || $_POST["buhanshui"] < 1){
+        $InputError = 1;
+        prnMsg("不含税填写不正确",'error');
+        $Errors[$i] = 'buhanshui';
+        $i++;
+	}
+	$hanshuijinjia = $_POST["buhanshui"] * 1.08;
+	$jinhuochengben = $hanshuijinjia / 16.5;
+	$wuliuchengben = $_POST['NetWeight'] * 50;
+	$zongchengben = $wuliuchengben + $jinhuochengben;
+
 	if ($InputError !=1){
 		if ($_POST['Serialised']==1){ /*Not appropriate to have several dp on serial items */
 			$_POST['DecimalPlaces']=0;
@@ -443,7 +454,14 @@ if (isset($_POST['submit'])) {
 							decimalplaces='" . $_POST['DecimalPlaces'] . "',
 							shrinkfactor='" . filter_number_format($_POST['ShrinkFactor']) . "',
 							pansize='" . filter_number_format($_POST['Pansize']) . "',
-							nextserialno='" . $_POST['NextSerialNo'] . "'
+							nextserialno='" . $_POST['NextSerialNo'] . "',
+							buhanshui=" . round($_POST['buhanshui'], 2) . ",
+							hanshuijinjia=" . round($hanshuijinjia, 2) . ",
+							jinhuochengben=" . round($jinhuochengben, 2) . ",
+							wuliuchengben=" . round($wuliuchengben, 2) . ",
+							zongchengben=" . round($zongchengben, 2) . ",
+							lastcostupdate='" . round($zongchengben, 2) . "',
+							materialcost='" . round($zongchengben,2) . "'
 					WHERE stockid='".$StockID."'";
 
 				$ErrMsg = _('The stock item could not be updated because');
@@ -647,7 +665,17 @@ if (isset($_POST['submit'])) {
 												taxcatid,
 												decimalplaces,
 												shrinkfactor,
-												pansize)
+												pansize,
+												lastcostupdate,
+                                                lastcost,
+                                                materialcost,
+                                                labourcost,
+                                                overheadcost,
+                                                buhanshui,
+                                                hanshuijinjia,
+                                                jinhuochengben,
+                                                wuliuchengben,
+                                                zongchengben)
 							VALUES ('".$StockID."',
 								'" . $_POST['Description'] . "',
 								'" . $_POST['LongDescription'] . "',
@@ -667,8 +695,17 @@ if (isset($_POST['submit'])) {
 								'" . $_POST['TaxCat'] . "',
 								'" . $_POST['DecimalPlaces']. "',
 								'" . filter_number_format($_POST['ShrinkFactor']) . "',
-								'" . filter_number_format($_POST['Pansize']) . "')";
-
+								'" . filter_number_format($_POST['Pansize']) . "',
+                                '" . Date('Y-m-d') . "',
+                                " . round($zongchengben, 2) . ",
+                                " . round($zongchengben, 2) . ",
+                                '" . filter_number_format(0.0000) . "',
+                                '" . filter_number_format(0.0000) . "',
+                                " . round($_POST["buhanshui"], 2) . ",
+                                " . round($hanshuijinjia, 2) . ",
+                                " . round($jinhuochengben, 2) . ",
+                                " . round($wuliuchengben, 2) . ",
+                                " . round($zongchengben, 2) . ")";
 				$ErrMsg =  _('The item could not be added because');
 				$DbgMsg = _('The SQL that was used to add the item failed was');
 				$result = DB_query($sql, $ErrMsg, $DbgMsg,'',true);
@@ -969,7 +1006,8 @@ if (!isset($StockID) OR $StockID=='' or isset($_POST['UpdateCategories'])) {
 					decimalplaces,
 					nextserialno,
 					pansize,
-					shrinkfactor
+					shrinkfactor,
+					buhanshui
 			FROM stockmaster
 			WHERE stockid = '".$StockID."'";
 
@@ -996,6 +1034,7 @@ if (!isset($StockID) OR $StockID=='' or isset($_POST['UpdateCategories'])) {
 	$_POST['NextSerialNo'] = $myrow['nextserialno'];
 	$_POST['Pansize'] = $myrow['pansize'];
 	$_POST['ShrinkFactor'] = $myrow['shrinkfactor'];
+	$_POST['buhanshui'] = $myrow['buhanshui'];
 
 
 	$sql = "SELECT descriptiontranslation, longdescriptiontranslation, language_id FROM stockdescriptiontranslations WHERE stockid='" . $StockID . "' AND (";
@@ -1132,6 +1171,9 @@ if (!isset($_POST['CategoryID'])) {
 
 echo '</select><a target="_blank" href="'. $RootPath . '/StockCategories.php">' . _('Add or Modify Stock Categories') . '</a></td>
 	</tr>';
+
+echo '<tr><td>不含税: </td>
+<td><input type="text" class="number" name="buhanshui" value="'.$_POST["buhanshui"].'"> </td></tr>';
 
 if (!isset($_POST['EOQ']) OR $_POST['EOQ']==''){
 	$_POST['EOQ']=0;

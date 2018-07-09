@@ -90,7 +90,8 @@ if (!isset($_POST['Search']) AND (isset($_POST['Select']) OR isset($_SESSION['Se
 								stockmaster.buhanshui,
 								stockmaster.hanshuijinjia,
 								stockmaster.jinhuochengben,
-								stockmaster.wuliuchengben
+								stockmaster.wuliuchengben,
+								stockmaster.materialcost
 						FROM stockmaster INNER JOIN stockcategory
 						ON stockmaster.categoryid=stockcategory.categoryid
 						WHERE stockid='" . $StockID . "'");
@@ -406,6 +407,7 @@ if (!isset($_POST['Search']) AND (isset($_POST['Select']) OR isset($_SESSION['Se
 		echo "<td>".$myrow["hanshuijinjia"]."</td>";
 		echo "<td>".$myrow["jinhuochengben"]."</td>";
 		echo "<td>".$myrow["wuliuchengben"]."</td>";
+		echo "<td>".$myrow["materialcost"]."</td>";
 		echo "</tr>";
 		echo "</table>";
 		DB_data_seek($result, 0);

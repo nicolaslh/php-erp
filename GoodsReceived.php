@@ -458,7 +458,7 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
 //					$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $OrderLine->ReceiveQty) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->QtyReceived)) / ($OrderLine->ReceiveQty + $OrderLine->QtyReceived);
 					$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $arr["quantity"]) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->ReceiveQty)) / ($arr["quantity"] + $OrderLine->ReceiveQty);
 					//成本计算
-                    $SQL = "UPDATE stockmaster SET	materialcost='" . indian_number_format($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost, 4) . "',
+                    $SQL = "UPDATE stockmaster SET	materialcost='" . round($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost, 2) . "',
 										lastcost='" . $CurrentStandardCost . "',
 										lastcostupdate ='" . Date('Y-m-d')."'
 								WHERE stockid='" . $OrderLine->StockID . "'";
