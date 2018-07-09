@@ -44,7 +44,7 @@ $FieldHeadings = array(
 if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file processing
 
     //initialize
-    $FieldTarget = 8;
+    $FieldTarget = 9;
     $InputError = 0;
 
     //check file info
@@ -290,7 +290,7 @@ if (isset($_FILES['userfile']) and $_FILES['userfile']['name']) { //start file p
 					" . $buhanshui . ",
 					" . $hanshuijinjia . ",
 					" . $jinhuochengben . ",
-					" . $wuliuchengben . ",
+					" . $wuliuchengben . "
 				);
 			";
 
