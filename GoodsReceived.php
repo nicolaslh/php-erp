@@ -434,7 +434,7 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
 
 			if ($OrderLine->StockID!='') { //Its a stock item line
 				/*Need to get the current standard cost as it is now so we can process GL jorunals later*/
-				$SQL = "SELECT materialcost + labourcost + overheadcost as stdcost,mbflag
+				$SQL = "SELECT materialcost + labourcost + overheadcost as stdcost,mbflag,grossweight
 							FROM stockmaster
 							WHERE stockid='" . $OrderLine->StockID . "'";
 				$ErrMsg =  _('CRITICAL ERROR') . '! ' . _('NOTE DOWN THIS ERROR AND SEEK ASSISTANCE') . ': ' . _('The standard cost of the item being received cannot be retrieved because');
@@ -446,8 +446,14 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
 //					if ($OrderLine->QtyReceived==0){ //its the first receipt against this line
 //						$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = $myrow[0];
 //					}
-                    $_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (float)$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->Price;
+                    //$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (float)$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->Price;
 					$CurrentStandardCost = $myrow[0];
+                    $buhanshui = $_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->Price;
+                    $hanshuijinjia = round( $buhanshui * 1.08, 2);
+                    $jinhuochengben = round($hanshuijinjia / 16.5, 2);
+                    $wuliuchengben = $myrow[2] * 50;
+                    $zongchengben = $wuliuchengben + $jinhuochengben;
+                    $_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = $zongchengben;
 					/*Set the purchase order line stdcostunit = weighted average / standard cost used for all receipts of this line
 				 		This assures that the quantity received against the purchase order line multiplied by the weighted average of standard
 				 		costs received = the total of standard cost posted to GRN suspense*/
@@ -456,16 +462,23 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
                     $locstockRes = DB_query($sql,$ErrMsg,$DbgMsg,true);
                     $arr = DB_fetch_array($locstockRes);
 //					$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $OrderLine->ReceiveQty) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->QtyReceived)) / ($OrderLine->ReceiveQty + $OrderLine->QtyReceived);
-					$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $arr["quantity"]) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->ReceiveQty)) / ($arr["quantity"] + $OrderLine->ReceiveQty);
-					//成本计算
-                    $SQL = "UPDATE stockmaster SET	materialcost='" . round($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost, 2) . "',
-										lastcost='" . $CurrentStandardCost . "',
-										lastcostupdate ='" . Date('Y-m-d')."'
-								WHERE stockid='" . $OrderLine->StockID . "'";
 
-                    $ErrMsg = _('The cost details for the stock item could not be updated because');
-                    $DbgMsg = _('The SQL that failed was');
-                    $Result = DB_query($SQL,$ErrMsg,$DbgMsg,true);
+                    if($CurrentStandardCost != $_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost){
+
+						$_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost = (($CurrentStandardCost * $arr["quantity"]) + ($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost * $OrderLine->ReceiveQty)) / ($arr["quantity"] + $OrderLine->ReceiveQty);
+						//成本计算
+						$SQL = "UPDATE stockmaster SET	materialcost='" . round($_SESSION['PO'.$identifier]->LineItems[$OrderLine->LineNo]->StandardCost, 2) . "',
+											lastcost='" . $CurrentStandardCost . "',
+											lastcostupdate ='" . Date('Y-m-d')."',
+											buhanshui=" . round($buhanshui, 2) . ",
+											hanshuijinjia=" . round($hanshuijinjia, 2) . ",
+											jinhuochengben=" . round($jinhuochengben, 2) . ",
+											zongchengben=" . round($zongchengben, 2) . "
+									WHERE stockid='" . $OrderLine->StockID . "'";
+						$ErrMsg = _('The cost details for the stock item could not be updated because');
+						$DbgMsg = _('The SQL that failed was');
+						$Result = DB_query($SQL,$ErrMsg,$DbgMsg,true);
+                    }
 				} elseif ($myrow[1] == 'D') { //it's a dummy part which without stock.
 					$Dummy = true;
 					if($OrderLine->QtyReceived == 0){//There is
