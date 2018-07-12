@@ -1,4 +1,7 @@
 <?php
+
+ini_set("display_errors", "On");
+error_reporting(E_ALL);
 if (!isset($PathPrefix)) {
     $PathPrefix = '';
 }
@@ -30,6 +33,8 @@ $result = DB_query($sql, "没找到物料", '', true);
 while ($rows = DB_fetch_assoc($result)) {
     echo '<br />';
     $StockID = $rows["stockid"];
+    echo $StockID;
+    echo '<br />';
     $result = DB_Txn_Begin();
     $result = DB_query($sql, _('Could not delete the location stock records because'), '', true);
     /*Deletes LocStock records*/
