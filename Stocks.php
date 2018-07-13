@@ -1172,7 +1172,7 @@ if (!isset($_POST['CategoryID'])) {
 echo '</select><a target="_blank" href="'. $RootPath . '/StockCategories.php">' . _('Add or Modify Stock Categories') . '</a></td>
 	</tr>';
 
-echo '<tr><td>不含税: </td>
+echo '<tr><td>不含税(日元): </td>
 <td><input type="text" class="number" name="buhanshui" value="'.$_POST["buhanshui"].'"> </td></tr>';
 
 if (!isset($_POST['EOQ']) OR $_POST['EOQ']==''){
