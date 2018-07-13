@@ -720,8 +720,8 @@ if (count($_SESSION['PO'.$identifier]->LineItems)>0 and !isset($_GET['Edit'])){
 			<th>' . _('Unit Conversion Factor') . '</th>
 			<th class="ascending">' . _('Order Quantity') . '<br />' . _('Supplier Units') . '</th>
 			<th>' .  _('Supplier Unit') . '</th>
-			<th class="ascending">' . _('Order Price') . '<br />' . _('Supp Units') . ' ('.$_SESSION['PO'.$identifier]->CurrCode.  ')</th>
-			<th class="ascending">' . _('Sub-Total') .' ('.$_SESSION['PO'.$identifier]->CurrCode.  ')</th>
+			<th class="ascending">不含税(日元)</th>
+			<th class="ascending">' . _('Sub-Total') .' </th>
 			<th class="ascending">' . _('Deliver By')  . '</th>
 			</tr>
 		</thead>
