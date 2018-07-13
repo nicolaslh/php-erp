@@ -27,7 +27,7 @@ $ReportList = array('Sales' => 'ord',
 /*The headings showing on the tabs accross the main index used also in WWW_Users for defining what should be visible to the user */
 $ModuleList = array(_('Sales'),
 //    _('Receivables'),
-    _('Purchases'),
+   "入库",
 //     _('Payables'),
     _('Inventory'),
     /*_('Manufacturing'),
